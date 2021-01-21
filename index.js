@@ -6,8 +6,18 @@
 
 
 //resolve // QUESTION 1 here
+let child = document.createElement("div");
+document.getElementById("a-1").appendChild(child);
+child.className = 'square';
 
 
+child.textContent = "X";
+child.addEventListener('click', function() {
+    if(child.textContent == "X"){
+        child.textContent = "O";
+    }else{child.textContent = "X"
+    }
+});
 
 
 //------------------------Question 2 ---------------------------
@@ -18,13 +28,38 @@
 // append the button as a child of the element with the 'id = a-2'
 const colors = [ 'red' , 'white', 'black' , 'green' , 'orange'];
 
-
-
-
 //resolve // QUESTION 2 here
 
 
+let dropDown = document.createElement('select');
+dropDown.id = "selectItems"
 
+
+let option;
+
+for (i = 0; i < colors.length; i++){
+    option = document.createElement('option')
+    option.value = colors[i];
+    option.innerHTML = colors[i];
+    dropDown.appendChild(option);
+}
+
+document.getElementById("a-2").appendChild(dropDown);
+
+
+
+let button = document.createElement('button');
+button.type = "button";
+button.textContent = "Remove'"
+
+document.getElementById("a-2").appendChild(button)
+
+
+button.addEventListener('click', function() {
+    let selected = selectItems.selectedIndex;
+    console.log(selected);
+    dropDown.remove(selected);
+});
 
 
 
@@ -36,7 +71,17 @@ const colors = [ 'red' , 'white', 'black' , 'green' , 'orange'];
 
 
 const calculateSphere = () =>{
+    let inputRadius = document.getElementById('radius').value;
+    let vResult = (4/3) * Math.PI * Math.pow(inputRadius, 3);
+    let vFinal = vResult.toFixed(2);
+    let aResult = 4 * Math.PI * Math.pow(inputRadius, 2);
+    let aFinal = aResult.toFixed(2);
 
+    //display results
+    document.getElementById('volume').value = vFinal;
+    document.getElementById('area').value = aFinal;
+    console.log(`User Input: ${inputRadius}, vol: ${vFinal}, area: ${aFinal}`)
+  
  }
 
 
@@ -47,3 +92,51 @@ const calculateSphere = () =>{
 
 
 //resolve // QUESTION 4 here
+
+let ol = document.createElement('DIV');
+document.getElementById("a-4").appendChild(ol);
+
+
+
+
+
+// function hideQuestions(){
+//     let labels = Array.from(document.getElementsByClassName("question-label"));
+//     for (i = 0; i < 3; i++) {
+//         let btn = document.createElement('BUTTON');
+//         btn.innerHTML = `Hide Question ${i+1}`
+//         let currentLabel = labels[i];
+//         btn.onclick = function() {
+//             currentLabel.style.visibility = 'hidden';
+            
+            
+//         }
+//         ol.appendChild(btn);
+//     }
+// }
+// hideQuestions();
+
+let button1 = document.createElement('BUTTON');
+button.type = "button"
+button1.innerHTML = "Hide Question 1";
+button1.addEventListener("click", function(){
+    let q1 = document.getElementById('a-1');
+    if(q1.style.display === 'block') {
+        q1.style.display = 'none';
+   } else if(q1.style.display === 'none') {
+        q1.style.display = "block";
+   }
+})
+ol.appendChild(button1)
+
+
+let button2 = document.createElement('BUTTON');
+button2.innerHTML = "Hide Question 2";
+ol.appendChild(button2)
+
+let button3 = document.createElement('BUTTON');
+button3.innerHTML = "Hide Question 3";
+ol.appendChild(button3)
+
+
+
